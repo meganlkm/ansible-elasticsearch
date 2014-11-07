@@ -1,0 +1,21 @@
+---
+es_user: elasticsearch
+es_group: elasticsearch
+
+es_version: 1.4
+es_repo_url: "http://packages.elasticsearch.org/elasticsearch/{{ es_version }}/debian"
+
+es_timezone: "America/Chicago"
+es_heap_size: 1g
+es_max_open_files: 65535
+es_max_locked_memory: unlimited
+es_node_max_local_storage_nodes: 1
+es_index_mapper_dynamic: true
+es_memory_bootstrap_mlockall: true
+
+es_home_dir: /usr/share/elasticsearch
+es_plugin_dir: /usr/share/elasticsearch/plugins
+es_log_dir: /var/log/elasticsearch
+es_data_dir: /var/lib/elasticsearch
+es_work_dir: /tmp/elasticsearch
+es_conf_dir: /etc/elasticsearch

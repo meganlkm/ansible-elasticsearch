@@ -1,0 +1,8 @@
+---
+es_cluster_name: elasticsearch1
+
+# es_plugins:
+  # - { name: 'jdbc', url: 'http://bit.ly/1dKqNJy' }
+  # - { name: 'elasticsearch/elasticsearch-mapper-attachments/2.0.0' }
+  # - { name: 'com.github.richardwilly98.elasticsearch/elasticsearch-river-mongodb/2.0.0' }
+  # - { name: 'facet-script', url: 'http://dl.bintray.com/content/imotov/elasticsearch-plugins/elasticsearch-facet-script-1.1.2.zip' }

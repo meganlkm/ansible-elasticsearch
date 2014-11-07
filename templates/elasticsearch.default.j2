@@ -1,0 +1,16 @@
+ES_USER={{ es_user }}
+ES_GROUP={{ es_group }}
+
+ES_HEAP_SIZE={{ es_heap_size }}
+MAX_OPEN_FILES={{ es_max_open_files }}
+MAX_LOCKED_MEMORY={{ es_max_locked_memory }}
+
+LOG_DIR={{ es_log_dir }}
+DATA_DIR={{ es_data_dir }}
+WORK_DIR={{ es_work_dir }}
+CONF_DIR={{ es_conf_dir }}
+CONF_FILE=/etc/elasticsearch/elasticsearch.yml
+
+{% if es_java_opts is defined %}
+ES_JAVA_OPTS="{{ es_java_opts }}"
+{% endif %}

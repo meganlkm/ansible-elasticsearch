@@ -1,0 +1,61 @@
+---
+- name: elasticsearch | add apt key
+  apt_key:
+    url: http://packages.elasticsearch.org/GPG-KEY-elasticsearch
+    state: present
+
+- name: elasticsearch add repo
+  apt_repository:
+    repo: "deb {{ es_repo_url }} stable main"
+    state: present
+
+- name: elasticsearch | update apt cache
+  apt:
+    update_cache: yes
+
+- name: elasticsearch | install
+  apt:
+    pkg: elasticsearch
+    state: present
+
+- name: elasticsearch | mkdirs
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ es_user }}"
+    group: "{{ es_group }}"
+  with_items:
+    - "{{ es_log_dir }}"
+    - "{{ es_data_dir }}"
+    - "{{ es_work_dir }}"
+    - "{{ es_conf_dir }}"
+    - "{{ es_plugin_dir }}"
+
+- name: elasticsearch | set defaults
+  template:
+    src: elasticsearch.default.j2
+    dest: /etc/default/elasticsearch
+    owner: "{{ es_user }}"
+    group: "{{ es_group }}"
+    mode: 0644
+
+- name: elasticsearch | start
+  service:
+    name: elasticsearch
+    state: started
+    enabled: yes
+
+- name: elasticsearch | update config
+  lineinfile: >
+    dest=/etc/elasticsearch/elasticsearch.yml
+    regexp="{{ item.regexp }}"
+    line="{{ item.line }}"
+    state=present
+  with_items:
+    - { regexp: '^cluster\.name',
+        line: "cluster.name: {{ es_cluster_name }}" }
+  notify: restart elasticsearch
+
+# TODO
+# plugins tasks or roles.. ?
+
