@@ -8,3 +8,10 @@
   when: "'- {{ item.name }}' not in es_installed_plugins.stdout"
   with_items: es_plugins
   notify: restart elasticsearch
+
+# do soemthing else here...
+- name: elasticsearch plugins | get postgresql jdbc jar
+  get_url:
+    url: http://jdbc.postgresql.org/download/postgresql-9.3-1102.jdbc41.jar
+    dest: /usr/share/elasticsearch/plugins/jdbc/postgresql-9.3-1102.jdbc41.jar
+    mode: 0644
