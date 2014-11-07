@@ -1,4 +1,8 @@
 ---
+
+# TODO check if its installed and the version
+#      only install if versions differ or is not installed
+
 - name: elasticsearch | add apt key
   apt_key:
     url: http://packages.elasticsearch.org/GPG-KEY-elasticsearch
@@ -56,6 +60,6 @@
         line: "cluster.name: {{ es_cluster_name }}" }
   notify: restart elasticsearch
 
-# TODO
-# plugins tasks or roles.. ?
-
+- name: elasticsearch | install plugins
+  include: plugins.yml
+  when: es_install_plugins

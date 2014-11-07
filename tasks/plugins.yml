@@ -1,0 +1,10 @@
+---
+- name: get es plugins
+  shell: /usr/share/elasticsearch/bin/plugin --list
+  register: es_installed_plugins
+
+- name: elasticsearch plugins | install user defined plugins
+  shell: "/usr/share/elasticsearch/bin/plugin --verbose --install {{ item.options }}"
+  when: "'- {{ item.name }}' not in es_installed_plugins.stdout"
+  with_items: es_plugins
+  notify: restart elasticsearch

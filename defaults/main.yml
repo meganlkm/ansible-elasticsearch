@@ -19,3 +19,5 @@ es_log_dir: /var/log/elasticsearch
 es_data_dir: /var/lib/elasticsearch
 es_work_dir: /tmp/elasticsearch
 es_conf_dir: /etc/elasticsearch
+
+es_install_plugins: false
